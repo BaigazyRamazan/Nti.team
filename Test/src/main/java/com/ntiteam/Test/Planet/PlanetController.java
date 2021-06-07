@@ -24,6 +24,12 @@ public class PlanetController {
         return planetService.getPlanets();
     }
 
+    /**Creates a new planet.
+     *
+     * @param planetName
+     * @param lordId
+     * @return
+     */
     @PostMapping(value = "/create",produces = MediaType.APPLICATION_JSON_VALUE)
     public Planet createPlanet(@RequestParam(name = "name") String planetName,
                              @RequestParam(name = "lord_id") String lordId){
@@ -32,6 +38,12 @@ public class PlanetController {
         return planet;
     }
 
+    /**Changes the lord of the planet.
+     *
+     * @param planetId
+     * @param lordId
+     * @return
+     */
     @PutMapping(path = "/change/{planet_id}/{lord_id}",produces = MediaType.APPLICATION_JSON_VALUE)
     public Lord changeLord(@PathVariable(name = "planet_id") Long planetId,
                            @PathVariable(name = "lord_id") Long lordId) {
@@ -40,6 +52,11 @@ public class PlanetController {
         return lord;
     }
 
+    /** Delete planet by using its id.
+     *
+     * @param planetId parameter for deleting planet
+     * @return
+     */
     @DeleteMapping(path = "/delete/{planet_id}",produces = MediaType.APPLICATION_JSON_VALUE)
     public Planet deletePlanet(@PathVariable(name = "planet_id") Long planetId){
         Planet planet = planetService.deletePlanet(planetId);
